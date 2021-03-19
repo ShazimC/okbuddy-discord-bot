@@ -18,7 +18,7 @@ client.on("message", (msg) => {
   if (msg.content.toLowerCase() === "okb") {
     const meme = okb.getNextMeme();
     if(!meme) {
-      msg.channel.send("bruh what, somn ain't right");
+      msg.channel.send("hol up, somn ain't right");
       return;
     }
     const memeEmbed = new MessageEmbed()
