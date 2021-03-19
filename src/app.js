@@ -17,6 +17,10 @@ client.on("message", (msg) => {
 
   if (msg.content.toLowerCase() === "okb") {
     const meme = okb.getNextMeme();
+    if(!meme) {
+      msg.channel.send("bruh what, somn ain't right");
+      return;
+    }
     const memeEmbed = new MessageEmbed()
       .setURL("https://reddit.com" + meme.permalink)
       .setTitle(meme.title)
@@ -28,11 +32,12 @@ client.on("message", (msg) => {
   if(msg.content.toLowerCase().startsWith('okb set-sub ')) {
     let newSub = msg.content.substring(12);
     console.log(newSub);
-    if(newSub.length <= 2){
+    if(newSub.length <= 2 || newSub.includes(" ")){
       msg.channel.send("Highly doubt that's a subreddit, not setting.");
       return;
     }
     okb.setSub(newSub).then(() => {
+      msg.channel.send('Subreddit changed to: ' + newSub);
       console.log('Subreddit changed to: ' + newSub);
     });
   }
