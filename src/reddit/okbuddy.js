@@ -9,7 +9,7 @@ export default class OKBuddy {
 
   constructor() {
     setInterval(() => {
-      this.refreshToken.then(async (data) => {
+      this.refreshToken().then(async (data) => {
         if (data.access_token) {
           this.memes = await this.getHotMemes();
           console.log("Reddit API: ready for memes");
