@@ -8,13 +8,14 @@ export default class OKBuddy {
   subreddit = "okbuddyretard";
 
   constructor() {
-    this.refreshToken().then(async (data) => {
-      if (data.access_token) {
-        this.memes = await this.getHotMemes();
-        console.log("Reddit API: ready for memes");
-        setInterval(this.refreshToken, 3500000);
-      }
-    });
+    setInterval(() => {
+      this.refreshToken.then(async (data) => {
+        if (data.access_token) {
+          this.memes = await this.getHotMemes();
+          console.log("Reddit API: ready for memes");
+        } else console.log("Auth couldn't be refreshed.");
+      });
+    }, 350000);
   }
 
   async setSub(name) {
@@ -26,7 +27,7 @@ export default class OKBuddy {
   }
 
   async refreshToken() {
-    console.log('refreshing token..');
+    console.log("refreshing token..");
     this.auth = await authenticate();
     return this.auth;
   }
@@ -45,8 +46,8 @@ export default class OKBuddy {
       return [];
     }
     const listings = response.data.data.children;
-    if(listings.length === 0 || !listings){
-      console.error('No response or data found.');
+    if (listings.length === 0 || !listings) {
+      console.error("No response or data found.");
       return [];
     }
     const memes = listings
@@ -62,13 +63,13 @@ export default class OKBuddy {
   }
 
   getRandomMeme() {
-    if(this.memes.length === 0) return undefined;
+    if (this.memes.length === 0) return undefined;
     let randomIndex = Math.floor(Math.random() * this.memes.length);
     return this.memes[randomIndex].data;
   }
 
   getNextMeme() {
-    if(this.memes.length === 0) return undefined;
+    if (this.memes.length === 0) return undefined;
     if (this.current === this.memes.length) this.current = 0;
     return this.memes[this.current++].data;
   }
