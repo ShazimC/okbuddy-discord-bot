@@ -12,7 +12,7 @@ export default class OKBuddy {
       if (data.access_token) {
         this.memes = await this.getHotMemes();
         console.log("Reddit API: ready for memes");
-        setInterval(this.refreshToken, data.expires_in * 1000);
+        setInterval(this.refreshToken, data.expires_in * 950);
       }
     });
   }

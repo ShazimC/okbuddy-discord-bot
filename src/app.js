@@ -31,7 +31,6 @@ client.on("message", (msg) => {
 
   if(msg.content.toLowerCase().startsWith('okb set-sub ')) {
     let newSub = msg.content.substring(12);
-    console.log(newSub);
     if(newSub.length <= 2 || newSub.includes(" ")){
       msg.channel.send("Highly doubt that's a subreddit, not setting.");
       return;
@@ -39,6 +38,8 @@ client.on("message", (msg) => {
     okb.setSub(newSub).then(() => {
       msg.channel.send('Subreddit changed to: ' + newSub);
       console.log('Subreddit changed to: ' + newSub);
+    }).catch(err => {
+      msg.channel("Somn ain't right");
     });
   }
 
