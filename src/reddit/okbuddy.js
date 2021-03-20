@@ -8,15 +8,8 @@ export default class OKBuddy {
   subreddit = "okbuddyretard";
 
   constructor() {
-    this.refreshToken();
-    setInterval(() => {
-      this.refreshToken().then(async (data) => {
-        if (data.access_token) {
-          this.memes = await this.getHotMemes();
-          console.log("Reddit API: ready for memes");
-        } else console.log("Auth couldn't be refreshed.");
-      });
-    }, 350000);
+    this.refreshToken()
+    setInterval(this.refreshToken, 3500000);
   }
 
   async setSub(name) {
@@ -30,6 +23,8 @@ export default class OKBuddy {
   async refreshToken() {
     console.log("refreshing token..");
     this.auth = await authenticate();
+    if (this.auth.access_token) console.log("Reddit API: ready for memes");
+    else console.log("Auth couldn't be refreshed.");
     return this.auth;
   }
 
