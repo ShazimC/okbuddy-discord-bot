@@ -8,6 +8,7 @@ export default class OKBuddy {
   subreddit = "okbuddyretard";
 
   constructor() {
+    this.refreshToken();
     setInterval(() => {
       this.refreshToken().then(async (data) => {
         if (data.access_token) {
