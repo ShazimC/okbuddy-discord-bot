@@ -13,21 +13,23 @@ const authenticate = async () => {
   form.append("grant_type", "password");
   form.append("username", reddit_un);
   form.append("password", reddit_pw);
-  const response = await axios.post(
-    "https://www.reddit.com/api/v1/access_token",
-    form,
-    {
-      headers: form.getHeaders(),
-      auth: {
-        username: reddit_id,
-        password: reddit_secret,
-      },
-    }
-  );
-  if(response.data.access_token)
-    return response.data;
-  else 
-    Promise.reject('No access token received.');
+  try {
+    const response = await axios.post(
+      "https://www.reddit.com/api/v1/access_token",
+      form,
+      {
+        headers: form.getHeaders(),
+        auth: {
+          username: reddit_id,
+          password: reddit_secret,
+        },
+      }
+    );
+    if (response.data.access_token) return response.data;
+    else Promise.reject("No access token received.");
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export { authenticate };

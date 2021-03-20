@@ -38,9 +38,7 @@ client.on("message", (msg) => {
     okb.setSub(newSub).then(() => {
       msg.channel.send('Subreddit changed to: ' + newSub);
       console.log('Subreddit changed to: ' + newSub);
-    }).catch(err => {
-      msg.channel("Somn ain't right");
-    });
+    })
   }
 
   if (msg.content.toLowerCase() === "okb pain") {
