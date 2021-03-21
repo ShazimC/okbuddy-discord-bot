@@ -9,7 +9,7 @@ export default class OKBuddy {
 
   constructor() {
     this.refreshToken()
-    setInterval(this.refreshToken, 3500000);
+    setInterval(() => this.refreshToken(), 1800000);
   }
 
   async setSub(name) {
