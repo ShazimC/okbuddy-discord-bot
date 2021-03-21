@@ -17,10 +17,14 @@ client.on("message", (msg) => {
 
   if (msg.content.toLowerCase().trim() === "okb") {
     const meme = okb.getNextMeme();
-    if(!meme) {
+    if (!meme) {
       msg.channel.send("hol up, somn ain't right");
       return;
     }
+    const imageURL =
+      !meme.url || meme.url === ""
+        ? "https://external-preview.redd.it/iDdntscPf-nfWKqzHRGFmhVxZm4hZgaKe5oyFws-yzA.png?auto=webp&s=38648ef0dc2c3fce76d5e1d8639234d8da0152b2"
+        : meme.url;
     const memeEmbed = new MessageEmbed()
       .setURL("https://reddit.com" + meme.permalink)
       .setTitle(meme.title)
@@ -29,20 +33,20 @@ client.on("message", (msg) => {
     msg.channel.send(memeEmbed);
   }
 
-  if(msg.content.toLowerCase().trim() === "okb sub"){
+  if (msg.content.toLowerCase().trim() === "okb sub") {
     msg.channel.send("Current Subreddit: " + okb.subreddit);
   }
 
-  if(msg.content.toLowerCase().startsWith('okb set-sub ')) {
+  if (msg.content.toLowerCase().startsWith("okb set-sub ")) {
     let newSub = msg.content.substring(12);
-    if(newSub.length <= 2 || newSub.includes(" ")){
+    if (newSub.length <= 2 || newSub.includes(" ")) {
       msg.channel.send("Highly doubt that's a subreddit, not setting.");
       return;
     }
     okb.setSub(newSub).then(() => {
-      msg.channel.send('Subreddit changed to: ' + newSub);
-      console.log('Subreddit changed to: ' + newSub);
-    })
+      msg.channel.send("Subreddit changed to: " + newSub);
+      console.log("Subreddit changed to: " + newSub);
+    });
   }
 
   if (msg.content.toLowerCase().trim() === "okb pain") {
