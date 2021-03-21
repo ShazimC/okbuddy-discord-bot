@@ -15,7 +15,7 @@ client.on("message", (msg) => {
     return;
   }
 
-  if (msg.content.toLowerCase() === "okb") {
+  if (msg.content.toLowerCase().trim() === "okb") {
     const meme = okb.getNextMeme();
     if(!meme) {
       msg.channel.send("hol up, somn ain't right");
@@ -41,14 +41,14 @@ client.on("message", (msg) => {
     })
   }
 
-  if (msg.content.toLowerCase() === "okb pain") {
+  if (msg.content.toLowerCase().trim() === "okb pain") {
     const pain = new MessageEmbed().setImage(
       "https://i.kym-cdn.com/photos/images/newsfeed/001/623/463/d90.jpg"
     );
     msg.channel.send(pain);
   }
 
-  if (msg.content.toLowerCase() === "okb hope") {
+  if (msg.content.toLowerCase().trim() === "okb hope") {
     const hopium = new MessageEmbed().setImage(
       "https://i.redd.it/mll25v5ad4w51.jpg"
     );
