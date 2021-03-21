@@ -30,7 +30,7 @@ client.on("message", (msg) => {
   }
 
   if(msg.content.toLowerCase().trim() === "okb sub"){
-    msg.channel.reply("Current Subreddit: " + okb.subreddit);
+    msg.channel.send("Current Subreddit: " + okb.subreddit);
   }
 
   if(msg.content.toLowerCase().startsWith('okb set-sub ')) {
