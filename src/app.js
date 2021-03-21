@@ -28,7 +28,7 @@ client.on("message", (msg) => {
     const memeEmbed = new MessageEmbed()
       .setURL("https://reddit.com" + meme.permalink)
       .setTitle(meme.title)
-      .setImage(meme.url)
+      .setImage(imageURL)
       .setFooter(`👍 ${meme.ups}  |  💬 ${meme.num_comments}`);
     msg.channel.send(memeEmbed);
   }
