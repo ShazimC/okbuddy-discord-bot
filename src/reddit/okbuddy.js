@@ -8,11 +8,11 @@ export default class OKBuddy {
   subreddit = "okbuddyretard";
 
   constructor() {
-    this.refreshToken().then(auth => {
-      if(auth.access_token){
+    this.refreshToken().then(async (auth) => {
+      if (auth.access_token) {
         this.memes = await this.getHotMemes();
       }
-    })
+    });
     setInterval(() => this.refreshToken(), 1800000);
   }
 
