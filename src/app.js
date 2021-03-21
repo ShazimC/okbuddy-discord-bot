@@ -29,6 +29,10 @@ client.on("message", (msg) => {
     msg.channel.send(memeEmbed);
   }
 
+  if(msg.content.toLowerCase().trim() === "okb sub"){
+    msg.channel.reply("Current Subreddit: " + okb.subreddit);
+  }
+
   if(msg.content.toLowerCase().startsWith('okb set-sub ')) {
     let newSub = msg.content.substring(12);
     if(newSub.length <= 2 || newSub.includes(" ")){
@@ -57,6 +61,7 @@ client.on("message", (msg) => {
 
   if (msg.content.toLowerCase() === "okb help") {
     let help = "okb -- next hot meme from currently selected subreddit";
+    help += "\nokb sub -- currently selected subreddit";
     help += "\nokb set-sub <subreddit> -- selects new subreddit";
     help += "\nokb hope -- sends wojack on hope";
     help += "\nokb pain -- sends wojack on pain";
