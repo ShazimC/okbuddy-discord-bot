@@ -1,10 +1,10 @@
-import { Client, Message, MessageEmbed } from "discord.js";
+import { Client, MessageEmbed } from "discord.js";
 import { config } from "dotenv";
 import OKBuddy from "./reddit/okbuddy.js";
 config(); // loads the .env contents into process.env
 
 const client = new Client(); // Discord Client.
-let okb = new OKBuddy(); //OKBuddy representative.
+const okb = new OKBuddy(); //OKBuddy representative.
 client.once("ready", async () => {
   console.log("okbuddy has connected!");
 });
@@ -38,7 +38,7 @@ client.on("message", (msg) => {
   }
 
   if (msg.content.toLowerCase().startsWith("okb set-sub ")) {
-    let newSub = msg.content.substring(12);
+    const newSub = msg.content.substring(12);
     if (newSub.length <= 2 || newSub.includes(" ")) {
       msg.channel.send("Highly doubt that's a subreddit, not setting.");
       return;

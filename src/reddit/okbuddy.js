@@ -1,6 +1,6 @@
 import { authenticate } from "./auth.js";
 import axios from "axios";
-let baseURL = "https://oauth.reddit.com/r/";
+const baseURL = "https://oauth.reddit.com/r/";
 export default class OKBuddy {
   auth = undefined;
   memes = [];
@@ -33,8 +33,8 @@ export default class OKBuddy {
   }
 
   async getHotMemes() {
-    let subredditURL = baseURL + this.subreddit;
-    let response = {};
+    const subredditURL = baseURL + this.subreddit;
+    const response = {};
     try {
       response = await axios.get(`${subredditURL}/hot`, {
         headers: {
@@ -45,17 +45,17 @@ export default class OKBuddy {
       console.error(err);
       return [];
     }
-    const listings = response.data.data.children;
+    const listings = response.data?.data?.children;
     if (listings.length === 0 || !listings) {
       console.error("No response or data found.");
       return [];
     }
     const memes = listings
       .filter((listing) => {
-        let notModPost = listing.data?.distinguished === null;
-        let isVideo = listing.data?.is_video;
-        let isGallery = listing.data?.is_gallery;
-        let sfw = listing.data?.over_18 === false;
+        const notModPost = listing.data?.distinguished === null;
+        const isVideo = listing.data?.is_video;
+        const isGallery = listing.data?.is_gallery;
+        const sfw = listing.data?.over_18 === false;
         return notModPost && !isVideo && sfw && !isGallery;
       })
       .sort((a, b) => b.data?.ups - a.data?.ups);
@@ -64,7 +64,7 @@ export default class OKBuddy {
 
   getRandomMeme() {
     if (this.memes.length === 0) return undefined;
-    let randomIndex = Math.floor(Math.random() * this.memes.length);
+    const randomIndex = Math.floor(Math.random() * this.memes.length);
     return this.memes[randomIndex].data;
   }
 

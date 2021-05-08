@@ -9,7 +9,7 @@ const reddit_un = process.env.REDDIT_USERNAME;
 const reddit_pw = process.env.REDDIT_PASSWORD;
 
 const authenticate = async () => {
-  let form = new FormData();
+  const form = new FormData();
   form.append("grant_type", "password");
   form.append("username", reddit_un);
   form.append("password", reddit_pw);
