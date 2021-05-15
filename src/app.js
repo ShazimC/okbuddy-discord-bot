@@ -4,7 +4,7 @@ import OKBuddy from "./reddit/okbuddy.js";
 config(); // loads the .env contents into process.env
 
 const client = new Client(); // Discord Client.
-const okb = new OKBuddy(); //OKBuddy representative.
+const okb = new OKBuddy(); // OKBuddy representative.
 client.once("ready", async () => {
   console.log("okbuddy has connected!");
 });
@@ -23,7 +23,7 @@ client.on("message", (msg) => {
     }
     const imageURL =
       !meme.url || meme.url === ""
-        ? "https://external-preview.redd.it/iDdntscPf-nfWKqzHRGFmhVxZm4hZgaKe5oyFws-yzA.png?auto=webp&s=38648ef0dc2c3fce76d5e1d8639234d8da0152b2"
+        ? "https://www.redditinc.com/assets/images/site/reddit-logo.png"
         : meme.url;
     const memeEmbed = new MessageEmbed()
       .setURL("https://reddit.com" + meme.permalink)

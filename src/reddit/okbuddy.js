@@ -8,8 +8,8 @@ export default class OKBuddy {
   subreddit = "okbuddyretard";
 
   constructor() {
-    this.refreshToken().then(async (auth) => {
-      if (auth.access_token) {
+    this.refreshToken().then(async (result) => {
+      if (result.access_token) {
         this.memes = await this.getHotMemes();
       }
     });
@@ -34,7 +34,7 @@ export default class OKBuddy {
 
   async getHotMemes() {
     const subredditURL = baseURL + this.subreddit;
-    const response = {};
+    let response = {};
     try {
       response = await axios.get(`${subredditURL}/hot`, {
         headers: {
