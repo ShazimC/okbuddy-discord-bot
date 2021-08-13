@@ -11,7 +11,6 @@ client.once("ready", async () => {
 
 client.on("message", (msg) => {
   if (!okb.auth) {
-    msg.reply("Reddit API being cringe, check it.");
     return;
   }
 
