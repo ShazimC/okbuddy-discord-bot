@@ -1,6 +1,7 @@
 import { authenticate } from "./auth.js";
 import axios from "axios";
 const baseURL = "https://oauth.reddit.com/r/";
+
 export default class OKBuddy {
   auth = undefined;
   memes = [];
@@ -52,11 +53,11 @@ export default class OKBuddy {
     }
     const memes = listings
       .filter((listing) => {
-        const notModPost = listing.data?.distinguished === null;
+        const modPost = listing.data?.distinguished;
         const isVideo = listing.data?.is_video;
         const isGallery = listing.data?.is_gallery;
-        const sfw = listing.data?.over_18 === false;
-        return notModPost && !isVideo && sfw && !isGallery;
+        const nsfw = listing.data?.over_18;
+        return !modPost && !isVideo && !nsfw && !isGallery;
       })
       .sort((a, b) => b.data?.ups - a.data?.ups);
     return memes;
